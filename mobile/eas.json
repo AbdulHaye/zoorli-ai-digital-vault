@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 16.28.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://ea86cc39-b2ed-41e7-b85c-b554d9026f1b-00-401cidotfxmx.janeway.replit.dev"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://ea86cc39-b2ed-41e7-b85c-b554d9026f1b-00-401cidotfxmx.janeway.replit.dev"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://ea86cc39-b2ed-41e7-b85c-b554d9026f1b-00-401cidotfxmx.janeway.replit.dev"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

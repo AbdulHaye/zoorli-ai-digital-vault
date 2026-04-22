@@ -1,0 +1,457 @@
+/*
+ * Zorli AI Vault - Brand Kit
+ * 
+ * This CSS file contains the complete Zorli design system.
+ * It provides a cohesive, professional blue-themed design with:
+ * - Custom color palette
+ * - Typography system
+ * - Component styles (buttons, cards, inputs)
+ * - Utility classes
+ * 
+ * Usage: Add classes like .btn, .card, .input to elements
+ * This file works alongside TailwindCSS without conflicts
+ */
+
+/* ========================================
+   CSS VARIABLES - Design Tokens
+   ======================================== */
+
+:root {
+  /* Core Colors */
+  --vault-blue: #2B6CB0;
+  --sky-trust: #A0C4E8;
+  --soft-cloud: #F7FAFC;
+  --warm-stone: #E2E8F0;
+  --deep-slate: #2D3748;
+  --success-green: #48BB78;
+  --error-red: #E53E3E;
+
+  /* Shade Scale - Vault Blue */
+  --vault-100: #EBF8FF;
+  --vault-300: #A0C4E8;
+  --vault-500: #2B6CB0;
+  --vault-700: #2C5282;
+  --vault-900: #1A365D;
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Spacing */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1:not(.text-primary-foreground):not([class*="text-"]), 
+h2:not(.text-primary-foreground):not([class*="text-"]), 
+h3:not(.text-primary-foreground):not([class*="text-"]), 
+h4:not(.text-primary-foreground):not([class*="text-"]), 
+h5:not(.text-primary-foreground):not([class*="text-"]), 
+h6:not(.text-primary-foreground):not([class*="text-"]) {
+  font-weight: 600;
+  color: var(--vault-blue);
+  margin: 0 0 8px;
+}
+
+button, input, select, textarea {
+  font-family: var(--font-primary);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #fff;
+  background: var(--vault-blue);
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--vault-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button Variants */
+.btn-success {
+  background: var(--success-green);
+}
+
+.btn-success:hover {
+  background: #38a169;
+}
+
+.btn-error {
+  background: var(--error-red);
+}
+
+.btn-error:hover {
+  background: #c53030;
+}
+
+.btn-secondary {
+  background: var(--warm-stone);
+  color: var(--deep-slate);
+}
+
+.btn-secondary:hover {
+  background: #cbd5e0;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--vault-blue);
+  border: 2px solid var(--vault-blue);
+}
+
+.btn-outline:hover {
+  background: var(--vault-100);
+  border-color: var(--vault-700);
+  color: var(--vault-700);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 14px 24px;
+  font-size: 16px;
+}
+
+/* ========================================
+   CARDS
+   ======================================== */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--warm-stone);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  font-weight: 600;
+  color: var(--vault-blue);
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.card-body {
+  color: var(--deep-slate);
+}
+
+.card-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--warm-stone);
+}
+
+/* ========================================
+   INPUTS
+   ======================================== */
+
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid var(--warm-stone);
+  border-radius: var(--radius-sm);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-primary);
+  color: var(--deep-slate);
+  background: #fff;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--sky-trust);
+  box-shadow: 0 0 0 3px rgba(160, 196, 232, 0.3);
+}
+
+.input:disabled {
+  background: var(--soft-cloud);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.input::placeholder {
+  color: #a0aec0;
+}
+
+/* Input Variants */
+.input-error {
+  border-color: var(--error-red);
+}
+
+.input-error:focus {
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.input-success {
+  border-color: var(--success-green);
+}
+
+/* Textarea */
+textarea.input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ========================================
+   BADGES & LABELS
+   ======================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+
+.badge-primary {
+  background: var(--vault-100);
+  color: var(--vault-700);
+}
+
+.badge-success {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-error {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.badge-warning {
+  background: #fefcbf;
+  color: #744210;
+}
+
+/* ========================================
+   ALERTS & NOTIFICATIONS
+   ======================================== */
+
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+  margin-bottom: 16px;
+}
+
+.alert-info {
+  background: var(--vault-100);
+  border-color: var(--vault-blue);
+  color: var(--vault-900);
+}
+
+.alert-success {
+  background: #c6f6d5;
+  border-color: var(--success-green);
+  color: #22543d;
+}
+
+.alert-error {
+  background: #fed7d7;
+  border-color: var(--error-red);
+  color: #742a2a;
+}
+
+.alert-warning {
+  background: #fefcbf;
+  border-color: #ecc94b;
+  color: #744210;
+}
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+.link {
+  color: var(--vault-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--vault-700);
+  text-decoration: underline;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.text-vault {
+  color: var(--vault-blue);
+}
+
+.text-slate {
+  color: var(--deep-slate);
+}
+
+.text-success {
+  color: var(--success-green);
+}
+
+.text-error {
+  color: var(--error-red);
+}
+
+.bg-vault {
+  background: var(--vault-blue);
+}
+
+.bg-vault-light {
+  background: var(--vault-100);
+}
+
+.bg-cloud {
+  background: var(--soft-cloud);
+}
+
+.border-vault {
+  border-color: var(--vault-blue);
+}
+
+.border-stone {
+  border-color: var(--warm-stone);
+}
+
+/* Shadow Utilities */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+/* Radius Utilities */
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+
+/* ========================================
+   RESPONSIVE HELPERS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .btn-mobile-full {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--vault-blue);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--vault-blue);
+  outline-offset: 2px;
+}

@@ -1,0 +1,37 @@
+// Subscription usage tracking for enforcing limits
+export const subscriptionUsage = pgTable("subscription_usage", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  subscriptionId: varchar("subscription_id").notNull().references(() => userSubscriptions.id, { onDelete: "cascade" }),
+  filesCount: integer("files_count").default(0),
+  passwordsCount: integer("passwords_count").default(0),
+  aiPromptsCount: integer("ai_prompts_count").default(0),
+  storageUsedBytes: integer("storage_used_bytes").default(0),
+  lastUpdated: timestamp("last_updated").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow(),
+}, (table) => [
+  index("subscription_usage_user_id_index").on(table.userId)
+]);
+
+// Payments table for tracking all payment transactions
+export const payments = pgTable("payments", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  paymentId: text("payment_id").notNull().unique(), // Stripe payment/subscription/invoice ID
+  userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  plan: varchar("plan").notNull(), // free, plus, business
+  amount: integer("amount").notNull(), // Amount in cents
+  currency: varchar("currency").default("usd"),
+  status: varchar("status").notNull().default("incomplete"), // active, canceled, incomplete, past_due, unpaid
+  subscriptionId: text("subscription_id"), // Stripe subscription ID for recurring payments
+  invoiceId: text("invoice_id"), // Stripe invoice ID
+  periodStart: timestamp("period_start"),
+  periodEnd: timestamp("period_end"),
+  metadata: json("metadata"), // Additional payment metadata
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => [
+  index("payments_user_id_index").on(table.userId),
+  index("payments_payment_id_index").on(table.paymentId),
+  index("payments_subscription_id_index").on(table.subscriptionId),
+  index("payments_status_index").on(table.status)
+]);

@@ -1,0 +1,71 @@
+{
+  "expo": {
+    "name": "Zorli AI Vault",
+    "slug": "zorli-ai-vault-mobile",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "scheme": "zorliapp",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": false,
+      "checkAutomatically": "NEVER"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zorli.aivault",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to your camera to take photos of documents.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to select images for upload.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.zorli.aivault",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "zorliapp"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-image-picker",
+      "expo-document-picker",
+      "expo-font",
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f64a572f-0169-4cda-80ed-3823c65aa4ce"
+      }
+    },
+    "owner": "ab17"
+  }
+}

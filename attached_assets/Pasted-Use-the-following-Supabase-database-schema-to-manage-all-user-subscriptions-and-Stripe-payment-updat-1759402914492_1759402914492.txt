@@ -1,0 +1,49 @@
+Use the following Supabase database schema to manage all user subscriptions and Stripe payment updates without relying on webhooks:
+
+Tables Available:
+
+user_subscriptions
+
+Stores active subscription data for each user (user_id, plan_id, stripe_subscription_id, stripe_customer_id, status, current_period_start, current_period_end, trial_start, trial_end, cancel_at_period_end, ended_at, last_payment_failed_at, grace_period_end_at).
+
+This table should always reflect the current Stripe subscription state of a user.
+
+subscription_plans
+
+Stores metadata about each plan (id, name, display_name, price, interval, stripe_price_id, max_files, max_passwords, max_ai_prompts, features, is_active).
+
+Use stripe_price_id when creating/updating subscriptions in Stripe.
+
+Use max_files, max_passwords, and max_ai_prompts to enforce feature limits in the app.
+
+subscription_usage
+
+Tracks actual user usage (files_count, passwords_count, storage_used_bytes, ai_prompts_count).
+
+Always check against subscription_plans limits when the user performs an action.
+
+Behavior Requirements:
+
+When a user subscribes to a plan:
+
+Create or update their user_subscriptions record with the correct plan_id, stripe_subscription_id, stripe_customer_id, and subscription status.
+
+Use subscription_plans to fetch the corresponding stripe_price_id when creating/updating Stripe subscriptions.
+
+When checking subscription status (e.g., before allowing uploads or AI prompts):
+
+Always validate user_subscriptions.status (e.g., active, canceled, past_due).
+
+Cross-check limits from subscription_plans and usage from subscription_usage.
+
+When a subscription is canceled or payment fails:
+
+Update user_subscriptions.status accordingly.
+
+Use fields like last_payment_failed_at, canceled_at, or grace_period_end_at for tracking.
+
+Do not use webhooks for syncing. Instead:
+
+Query Stripe API directly when needed (e.g., to refresh status, current_period_end, etc.) and update the Supabase tables.
+
+The Supabase tables (user_subscriptions, subscription_usage, subscription_plans) should always remain the source of truth for the application logic.
