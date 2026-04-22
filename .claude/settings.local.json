@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(rm -f .replit replit.md)",
+      "Bash(rm -rf .local/state/replit)",
+      "Bash(rm -rf .git.backup.20251007_153412)"
     ]
   }
 }
