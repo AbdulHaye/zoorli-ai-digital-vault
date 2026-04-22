@@ -27,7 +27,7 @@ An AI-powered secure vault and file management platform with web and mobile supp
 
 - Node.js 20+
 - npm
-- PostgreSQL database (Neon recommended)
+- Supabase database (Neon recommended)
 
 ### Environment Variables
 
